@@ -10,6 +10,8 @@ using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using System.Text.Json;
 
 namespace Serelization_formDemo
 {
@@ -123,7 +125,118 @@ namespace Serelization_formDemo
             }
 
         }
+
+        private void btnXMLWrite_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //step 1
+                FileStream fs = new FileStream(@"C:\SkillMineDoc\EmployeeXML.xml", FileMode.Create, FileAccess.Write);
+
+                //step 2
+                Employee emp = new Employee();
+                emp.Id = Convert.ToInt32(txtId.Text);
+                emp.Name = txtName.Text;
+                emp.Salary = Convert.ToInt32(txtSalary.Text);
+
+                //step3
+                XmlSerializer
+                    xml = new XmlSerializer(typeof(Employee));
+
+                 xml.Serialize(fs, emp);
+
+                fs.Close();
+                MessageBox.Show("Employee record added to file");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btnXMLRead_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // step1 1
+                FileStream fs = new FileStream(@"C:\SkillMineDoc\EmployeeXML.xml", FileMode.Open, FileAccess.Read);
+                // step 2
+                Employee emp = new Employee();
+                // step 3
+                XmlSerializer
+                   xml = new XmlSerializer(typeof(Employee));
+
+                emp = (Employee)xml.Deserialize(fs);
+                fs.Close();
+
+                txtId.Text = emp.Id.ToString();
+                txtName.Text = emp.Name;
+                txtSalary.Text = emp.Salary.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btnJSONWrite_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //step 1
+                FileStream fs = new FileStream(@"C:\SkillMineDoc\EmployeeJSON.json", FileMode.Create, FileAccess.Write);
+
+                //step 2
+                Employee emp = new Employee();
+                emp.Id = Convert.ToInt32(txtId.Text);
+                emp.Name = txtName.Text;
+                emp.Salary = Convert.ToInt32(txtSalary.Text);
+
+                //step3
+                JsonSerializer.Serialize<Employee>(fs,emp);
+               
+
+                fs.Close();
+                MessageBox.Show("Employee record added to file");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void btnJSONRead_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // step1 1
+                FileStream fs = new FileStream(@"C:\SkillMineDoc\EmployeeJSON.json", FileMode.Open, FileAccess.Read);
+                // step 2
+                Employee emp = new Employee();
+                // step 3
+                emp=JsonSerializer.Deserialize<Employee>(fs);
+
+              
+                fs.Close();
+
+                txtId.Text = emp.Id.ToString();
+                txtName.Text = emp.Name;
+                txtSalary.Text = emp.Salary.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
+    
     
 }
 

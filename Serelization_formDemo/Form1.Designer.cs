@@ -120,6 +120,7 @@
             this.btnXMLWrite.TabIndex = 8;
             this.btnXMLWrite.Text = "XML Write";
             this.btnXMLWrite.UseVisualStyleBackColor = true;
+            this.btnXMLWrite.Click += new System.EventHandler(this.btnXMLWrite_Click);
             // 
             // btnXMLRead
             // 
@@ -129,6 +130,7 @@
             this.btnXMLRead.TabIndex = 9;
             this.btnXMLRead.Text = "XML Read";
             this.btnXMLRead.UseVisualStyleBackColor = true;
+            this.btnXMLRead.Click += new System.EventHandler(this.btnXMLRead_Click);
             // 
             // btnSOAPWrite
             // 
@@ -158,6 +160,7 @@
             this.btnJSONWrite.TabIndex = 12;
             this.btnJSONWrite.Text = "JSON Write";
             this.btnJSONWrite.UseVisualStyleBackColor = true;
+            this.btnJSONWrite.Click += new System.EventHandler(this.btnJSONWrite_Click);
             // 
             // btnJSONRead
             // 
@@ -167,6 +170,7 @@
             this.btnJSONRead.TabIndex = 13;
             this.btnJSONRead.Text = "JSON Read";
             this.btnJSONRead.UseVisualStyleBackColor = true;
+            this.btnJSONRead.Click += new System.EventHandler(this.btnJSONRead_Click);
             // 
             // Form1
             // 
